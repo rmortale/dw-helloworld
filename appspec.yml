@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: HelloWorld-1.0-SNAPSHOT.jar
+  - source: target/HelloWorld-1.0-SNAPSHOT.jar
     destination: /usr/local/helloworld/
   - source: hello-world.yml
     destination: /usr/local/helloworld/
