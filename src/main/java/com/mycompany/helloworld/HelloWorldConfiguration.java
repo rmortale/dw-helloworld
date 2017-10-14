@@ -5,14 +5,18 @@
 package com.mycompany.helloworld;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kjetland.dropwizard.activemq.ActiveMQConfig;
+import com.kjetland.dropwizard.activemq.ActiveMQConfigHolder;
 import io.dropwizard.Configuration;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author vidoa
  */
-public class HelloWorldConfiguration extends Configuration {
+public class HelloWorldConfiguration extends Configuration implements ActiveMQConfigHolder {
 
     @NotEmpty
     @JsonProperty
@@ -22,6 +26,13 @@ public class HelloWorldConfiguration extends Configuration {
     private String defaultName = "Stranger";
     @JsonProperty
     private String artemisIp;
+    @JsonProperty
+    @NotNull
+    @Valid
+    private ActiveMQConfig activeMQ;
+    @JsonProperty
+    @NotNull
+    private String queueName;
 
     public String getTemplate() {
         return template;
@@ -34,5 +45,14 @@ public class HelloWorldConfiguration extends Configuration {
     public String getArtemisIp() {
         return artemisIp;
     }
-    
+
+    @Override
+    public ActiveMQConfig getActiveMQ() {
+        return activeMQ;
+    }
+
+    public String getQueueName() {
+        return queueName;
+    }
+
 }

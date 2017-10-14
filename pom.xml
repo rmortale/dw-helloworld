@@ -35,7 +35,11 @@
             <artifactId>dropwizard-core</artifactId>
         </dependency>
 
-    
+        <dependency>
+            <groupId>com.kjetland.dropwizard</groupId>
+            <artifactId>dropwizard-activemq</artifactId>
+            <version>0.5.1</version>
+        </dependency>
     </dependencies>
 
     <build>

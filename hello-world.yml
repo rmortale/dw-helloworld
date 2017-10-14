@@ -1,4 +1,9 @@
 template: Hello, %s!
 defaultName: Stranger
+queueName: test.queue.01
 
 artemisIp: ${ARTEMISIP:-localhost}
+
+activeMQ:
+  brokerUrl: tcp://${ARTEMISIP:-localhost}:61616
+  
