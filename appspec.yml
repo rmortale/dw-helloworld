@@ -5,6 +5,8 @@ files:
     destination: /usr/local/helloworld/
   - source: hello-world.yml
     destination: /usr/local/helloworld/
+  - source: scripts/ec2-tags.sh
+    destination: /usr/local/helloworld/
   - source: scripts/dw-helloworld.conf
     destination: /etc/init/
 hooks:
