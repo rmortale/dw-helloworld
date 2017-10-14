@@ -20,17 +20,19 @@ public class HelloWorldResource {
 
     private final String template;
     private final String defaultName;
+    private final String artemisIp;
     private final AtomicLong counter;
 
-    public HelloWorldResource(String template, String defaultName) {
+    public HelloWorldResource(String template, String defaultName, String artemisIp) {
         this.template = template;
         this.defaultName = defaultName;
+        this.artemisIp = artemisIp;
         this.counter = new AtomicLong();
     }
 
     @GET
     @Timed
     public Saying sayHello(@QueryParam("name") Optional<String> name) {
-        return new Saying(counter.incrementAndGet(), String.format(template, name.or(defaultName)));
+        return new Saying(counter.incrementAndGet(), String.format(template, name.or(artemisIp)));
     }
 }

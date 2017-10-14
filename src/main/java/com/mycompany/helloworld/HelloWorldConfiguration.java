@@ -20,6 +20,8 @@ public class HelloWorldConfiguration extends Configuration {
     @NotEmpty
     @JsonProperty
     private String defaultName = "Stranger";
+    @JsonProperty
+    private String artemisIp;
 
     public String getTemplate() {
         return template;
@@ -28,4 +30,9 @@ public class HelloWorldConfiguration extends Configuration {
     public String getDefaultName() {
         return defaultName;
     }
+
+    public String getArtemisIp() {
+        return artemisIp;
+    }
+    
 }

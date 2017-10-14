@@ -7,6 +7,8 @@ package com.mycompany.helloworld;
 import com.mycompany.helloworld.health.TemplateHealthCheck;
 import com.mycompany.helloworld.resources.HelloWorldResource;
 import io.dropwizard.Application;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -27,6 +29,12 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
     @Override
     public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
+        // Enable variable substitution with environment variables
+        bootstrap.setConfigurationSourceProvider(
+                new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+                        new EnvironmentVariableSubstitutor(false)
+                )
+        );
     }
 
     @Override
@@ -34,7 +42,8 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
             Environment environment) {
         final String template = configuration.getTemplate();
         final String defaultName = configuration.getDefaultName();
-        environment.jersey().register(new HelloWorldResource(template, defaultName));
+        final String artemisIp = configuration.getArtemisIp();
+        environment.jersey().register(new HelloWorldResource(template, defaultName, artemisIp));
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
     }
 }
